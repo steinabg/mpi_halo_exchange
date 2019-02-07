@@ -162,7 +162,7 @@ def gather_petri():
 
             imageXcounter += 1
 
-        # print('IMAGE = \n', IMAGE.reshape(p_local_petri_y_dim * p_y_dims, p_local_petri_x_dim * p_x_dims))
+        IMAGE = IMAGE.reshape(p_local_petri_y_dim * p_y_dims, p_local_petri_x_dim * p_x_dims)
     return IMAGE
 
 if __name__ == "__main__":
@@ -226,6 +226,7 @@ if __name__ == "__main__":
 
     comm.barrier()
     IMAGE = gather_petri()
+    if rank == 0: print (IMAGE)
 
     # print("after \nprocess = ", comm.rank,"\n",
     #       local_petri_A)
